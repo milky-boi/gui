@@ -56,6 +56,13 @@ class Data:
     
     @classmethod
     def select_col(cls, start_col, end_col):
+        """ data frame se razdvaja na df_info i df_data, u df_info uzeti su
+        stupci sa informacijama iz tablice(datum, vrijeme, sum, mean, std)
+        dok su u df_data brojcane vrijednsoti mjerenja   
+        nakon seleckcije redaka i stupaca vrsi se promjena naziva stupaca u 
+        df_data da odabrane jedinke budu poredane od broja 1
+        """
+        
         cls.start_col = start_col-1
         cls.end_col = end_col
         print(start_col)
@@ -70,6 +77,7 @@ class Data:
         for i in range(1,len_df):
             header.append(i) 
         df_data.columns = header
+        
         cls.df = pd.concat([df_info, df_data], axis=1, sort=False)
         
         print('columns selected')  
@@ -78,6 +86,9 @@ class Data:
     
     @classmethod
     def select_rows(cls, start_row, end_row):
+        """
+        odabir redaka u data frameu, vraca novi data frame
+        """
         cls.start_row = start_row
         cls.end_row = end_row
 
@@ -88,6 +99,10 @@ class Data:
     
     @classmethod
     def get_stats(cls):
+        """
+        izracunavanje vrijednosti za stupce mean, sum, std
+        """
+        
         df = cls.df.copy()
         df['mean'] = df.iloc[:,7:].mean(axis=1) 
         df['std'] = df.iloc[:,7:].std(axis=1) 
@@ -98,7 +113,7 @@ class Data:
         return df
 
     def display_data(self):
-        print('displazing data... ')
+        print('displaying data... ')
         df_col = self.df.head()
         print(df_col)
     

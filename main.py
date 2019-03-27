@@ -22,7 +22,7 @@ style.use('ggplot')
 
 
 class DataApp(tk.Tk):
-    filepath = r'C:/Users/mile/Desktop/biotech/DAM 1 bin/CTRL -3.txt' 
+    #filepath = r'C:/Users/mile/Desktop/biotech/DAM 1 bin/CTRL -3.txt' 
     #filepath = r' '  
     _start_col = tk.IntVar
     _end_col = tk.IntVar    
@@ -62,6 +62,10 @@ class DataApp(tk.Tk):
         frame.tkraise()
         
     def browse():
+        """dohvacanje putanje do filea koji zelimo ucitati, potom se vrijednost
+        filename treba pretvoriti u df
+        """
+        ###PROBLEM
         filepath = filedialog.askopenfilename(initialdir = r"C:\Users\mile\Desktop\biotech",
                                               title = "Select file",
                                               filetypes = (('txt','*.txt'),
@@ -75,7 +79,11 @@ class DataApp(tk.Tk):
            start_time_s2, end_time_s2,
            start_time_s3, end_time_s3,
            start_time_s4, end_time_s4):
-
+        
+        """ova funkcija se poziva da bi se od unesenih podataka napravili data
+        frameovi
+        """        
+        
         DataApp.df = dcls.Data.select_col(int(start_col), int(end_col))
         DataApp.df = dcls.Data.get_stats()
         
@@ -102,6 +110,10 @@ class StartPage(tk.Frame):
         button1 = ttk.Button(self, text='Browse files', command=DataApp.browse)
         button1.pack()
         
+        """
+        potrebno je prilikom otvaranja ove stranice napraviti prikaz ucitanog
+        data framea u text widgetu
+        """
         button2 = ttk.Button(self, text='Data selection page',
                              command=lambda: start())
         button2.pack()
@@ -110,6 +122,10 @@ class StartPage(tk.Frame):
         button3.pack()
         
         def start():
+            """
+            trebala bi pozivati 2 funkcije, 1 za prikaz stranice a druga za update 
+            koji bi trebao prikazati df
+            """
             controller.show_frame(DataPage)
             #DataPage.show_all_clicked()
             
@@ -117,7 +133,9 @@ class StartPage(tk.Frame):
 class DataPage(tk.Frame):
     
     broj = 1000
+
     def __init__(self, parent, controller):
+        ttk.Frame.__init__(self, parent)
         example = tk.StringVar()
         example.set(DataApp.df)
         
@@ -169,7 +187,7 @@ class DataPage(tk.Frame):
             T.delete('1.0', tk.END)
             T.insert(tk.END, DataApp.df_4)
             
-        ttk.Frame.__init__(self, parent)
+        
         tk.Label(self, text='Data page', font=MID_FONT).grid(row=0)
         
         button1 = ttk.Button(self, text='Start page', command=lambda: controller.show_frame(StartPage))
