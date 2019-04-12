@@ -11,10 +11,6 @@ import pandas as pd
 import DataPage
 
 class DataEdit_:
-    def on_show_frame(self, event):
-        T = tk.Text(self, height=20, width=140, wrap=None)
-        T.grid(row=2, column=4, columnspan=14, rowspan=14, padx=10, pady=10)
-        T.insert(tk.END, self.controller.df)
       
     def select_cols_rows(self, start_col, end_col, start_row, end_row):
         """ data frame se razdvaja na df_info i df_data, u df_info uzeti su
@@ -24,15 +20,18 @@ class DataEdit_:
         df_data da odabrane jedinke budu poredane od broja 1
         """
         start_col = int(start_col)-1
-        end_col = int(end_col)
+        print(start_col)
+        end_col = int(end_col)-1
         print(type(start_col))
+        print(end_col)
         print(type(end_col))
-        df_info = self.controller.df.iloc[:, :7]
+        df_info = self.controller.df.iloc[:, :3]
         #ovdje cemo pozvati funkciju clear_data() koja ce dio tablice procistiti 
-        df_data = self.controller.df.iloc[:, 7:]
-        
+        df_data = self.controller.df.iloc[:, 3:]
+        print(df_info)
         #odabiremo jedinke koje smo unjeli u entryu
-        df_data = df_data.iloc[:, start_col:end_col]
+        df_data = df_data.loc[:, start_col:end_col]
+        
         #postavljamo redne vrojeve od 1 na dalje
         header = []
         len_df = len(df_data.columns)+1
@@ -52,31 +51,31 @@ class DataEdit_:
         start_row=None
         end_row=None
 
-        self.bind("<<ShowFrame>>", self.on_show_frame)
         DataEdit_.clear_data(self)
         self.controller.df = DataEdit_.get_stats(self)
         
         print(self.controller.df)
         print('columns selected')  
-
+        
     def clear_data(self):
         """
         ova funkcija brise nepotrebne stupce koji nisu jedinke i kreira
         stupac time koji je u formatu dd-mm-yyyy hh:mm:ssss imati na umu 
         da se nakon time stupca dodaju 3 nova stupca gdje se racunaju vrijednosti
-
         """
         df = self.controller.df
         
         header = []
         header.append('broj')
         header.append('date')
-        header.append('time')   
+        header.append('time')
+        
         len_df = len(df.columns)-2
         for i in range(1,len_df):
-            header.append(i)         
+            header.append(i)  
+        
         df.columns = header
-           
+
         df_info = df.iloc[:, :3]
         df_data = df.iloc[:, 3:]
         
@@ -103,9 +102,9 @@ class DataEdit_:
         df['mean'] = df.iloc[:,7:].mean(axis=1) 
         df['std'] = df.iloc[:,7:].std(axis=1) 
         df['sum'] = df.iloc[:,7:].sum(axis=1) 
-
-        return df
         print('uspjesno df')    
+        return df
+        
         
     
     

@@ -26,6 +26,7 @@ class DataApp_(tk.Tk):
         
         #globalna varijabla sa panda podacima koju mogu korisitti svi frejmovi nakon što su podaci učitani
         self.df = pd.DataFrame()
+        self.dfEdited = pd.DataFrame()
 
         self.frames = {}      
         for F in (StartPage_, DataPage_, GraphPage_):
