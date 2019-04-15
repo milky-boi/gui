@@ -16,6 +16,7 @@ from matplotlib.figure import Figure
 from matplotlib import style
 import matplotlib.dates as mdates
 
+from DataEdit import DataEdit_
 
 LARGE_FONT = ('Verdana', 12)
 MID_FONT = ('Verdana', 10)
@@ -28,16 +29,19 @@ class GraphPage_(tk.Frame):
         self.controller = controller
         label= tk.Label(self, text='Graph page', font=MID_FONT)
         label.pack(pady=10,padx=10)
+        df = self.controller.df
         
         f = Figure(figsize=(5,5), dpi=100)
         
         a = f.add_subplot(111)
-        #a.plot(self.controller.df[1], self.controller.df[2])
-
+        
+        #a.plot(df_1['datetime'], df_1['mean'])
+        
         #xfmt = mdates.DateFormatter('%d-%m-%y %H:%M')
         #a.xaxis.set_major_formatter(xfmt)
         
         canvas = FigureCanvasTkAgg(f, self)
         canvas.draw()
         canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
-        
+   
+

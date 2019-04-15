@@ -32,4 +32,7 @@ class StartPage_(tk.Frame):
             filetypes = (('txt','*.txt'),
             ("all files","*.*"))) 
         #controller je tk koji je pozvao ovaj prozor, odnosno DataApp, znači ovo sprema pandas dataframe u globalnu varijablu u DataApp
+        pd.set_option('display.max_rows', None)
+        #pd.set_option('display.max_rows', None, 'display.max_columns', None)
+
         self.controller.df = pd.read_csv(filepath, sep='\t', header=None)

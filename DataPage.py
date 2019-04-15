@@ -23,11 +23,16 @@ class DataPage_(tk.Frame):
         T.grid(row=2, column=4, columnspan=14, rowspan=14, padx=10, pady=10)
         T.insert(tk.END, self.controller.df)
         
+    def split_table(self, start_bsl_morning, start_1st_expo, start_bsl_noon, start_2nd_expo):
+        DataEdit_.split_for_graph(self, start_bsl_morning, start_1st_expo, start_bsl_noon, start_2nd_expo)
+        
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
         tk.Label(self, text='Data page', font=MID_FONT).grid(pady=10,padx=10)
         ttk.Button(self, text='Browse', 
                    command=lambda: controller.show_frame(GraphPage_)).grid(row=1)
+        ttk.Button(self, text='Population').grid(row=1, column=4)
+        ttk.Button(self, text='Individual').grid(row=1, column=5)
         
         #controller je tk koji je pozvao ovaj prozor, odnosno DataApp, postavljamo ga na self kako bi mogli gore u on_show_frame pristupiti df-u i učitati ga u tablicu
         self.controller = controller
@@ -47,9 +52,6 @@ class DataPage_(tk.Frame):
 
         """           s1 selection COL1            """
         ttk.Label(self, text='Time selection:', font=MID_FONT).grid(row=6, column=1)    
-        
-        #ttk.Label(self, text='Time selection:', font=MID_FONT).grid(row=6, column=0)    
-               
         ttk.Label(self, text="Start time:" , font=SMALL_FONT).grid(row=8)
         ttk.Label(self, text="End time:", font=SMALL_FONT).grid(row=9)       
                
@@ -57,15 +59,38 @@ class DataPage_(tk.Frame):
         end_row =tk.StringVar()           
         self.start_row = ttk.Entry(self, textvariable=start_row).grid(row=8, column=1)     
         self.end_row = ttk.Entry(self, textvariable=end_row).grid(row=9, column=1)                    
-
-
         
-        ttk.Button(self, text='Load data', command=lambda: DataPage_.filter_data(self, start_col.get(),
+        ttk.Button(self, text='Select main table', command=lambda: DataPage_.filter_data(self, start_col.get(),
                                                                                          end_col.get(),
                                                                                          start_row.get(),
                                                                                          end_row.get())).grid(row=10, column=1, padx=10, pady=10)
         
-
+        ttk.Label(self, text="BSL morning:" , font=SMALL_FONT).grid(row=11)
+        ttk.Label(self, text="1st expo:", font=SMALL_FONT).grid(row=12)       
+        ttk.Label(self, text="BSL noon:", font=SMALL_FONT).grid(row=13)       
+        ttk.Label(self, text="2nd expo:", font=SMALL_FONT).grid(row=14)       
+              
+        start_bsl_morning = tk.IntVar()
+        start_1st_expo = tk.IntVar()   
+        start_bsl_noon = tk.IntVar()
+        start_2nd_expo = tk.IntVar()
         
-         
-         
+        self.start_bsl_morning = ttk.Entry(self, textvariable=start_bsl_morning).grid(row=11, column=1)     
+        self.start_1st_expo = ttk.Entry(self, textvariable=start_1st_expo).grid(row=12, column=1)     
+        self.start_bsl_noon = ttk.Entry(self, textvariable=start_bsl_noon).grid(row=13, column=1)     
+        self.start_2nd_expo = ttk.Entry(self, textvariable=start_2nd_expo).grid(row=14, column=1)     
+        
+        ttk.Button(self, text='Split table',
+                   command=lambda: DataPage_.split_table(
+                           self,
+                           start_bsl_morning.get(),
+                           start_1st_expo.get(),
+                           start_bsl_noon.get(),
+                           start_2nd_expo.get())).grid(row=15, column=1, padx=10, pady=10)
+        
+        ttk.Button(self, text='Save XLSX',
+                   command=lambda: DataEdit_.save_to_xlsx(self.controller.df)).grid(row=20, column=4) 
+        ttk.Button(self, text='Save TXT',
+                   command=lambda: DataEdit_.save_to_txt(self.controller.df)).grid(row=20, column=5) 
+        
+               

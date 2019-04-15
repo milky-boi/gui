@@ -6,9 +6,12 @@ Created on Tue Apr  9 21:27:14 2019
 """
 import tkinter as tk
 from tkinter import ttk
+from tkinter import filedialog
 
 import pandas as pd 
+import numpy as np
 import DataPage
+
 
 class DataEdit_:
       
@@ -28,7 +31,7 @@ class DataEdit_:
         df_info = self.controller.df.iloc[:, :3]
         #ovdje cemo pozvati funkciju clear_data() koja ce dio tablice procistiti 
         df_data = self.controller.df.iloc[:, 3:]
-        print(df_info)
+        #print(df_info)
         #odabiremo jedinke koje smo unjeli u entryu
         df_data = df_data.loc[:, start_col:end_col]
         
@@ -54,7 +57,6 @@ class DataEdit_:
         DataEdit_.clear_data(self)
         self.controller.df = DataEdit_.get_stats(self)
         
-        print(self.controller.df)
         print('columns selected')  
         
     def clear_data(self):
@@ -90,8 +92,6 @@ class DataEdit_:
         
         self.controller.df = pd.concat([df_info, df_data], axis=1, sort=False)
         
-        #print(cls.df.head())
-        
     def get_stats(self):
         """"
         ovdje se izracunavaju statisticke vrijednosti koje se pohranjhuju u 
@@ -104,6 +104,49 @@ class DataEdit_:
         df['sum'] = df.iloc[:,7:].sum(axis=1) 
         print('uspjesno df')    
         return df
+    
+    def save_to_xlsx(df):
+        """spremanje data framea u xlsx formatu"""
+
+        df.to_excel("selected_data.xlsx")
+        print('pohranjeno u xlsx')
+    
+    def save_to_txt(df):
+        """spremanje data framea u txt formatu"""
+        
+        df.to_csv('selcted_data.txt', header=True, index=False, sep='\t', float_format='%.3f') 
+        
+        print('pohranjeno u txt')
+    
+    def select_col(df, start):      
+        start_row  = int(start)
+        end_row = int(start)+30
+        df = df[start_row:end_row]
+        return df
+        
+    def split_for_graph(self, start_bsl_morning, start_1st_expo, start_bsl_noon, start_2nd_expo):
+        """
+        odabrane vrijednosti razdvajaju data frame na 4 manja framea i crta 
+        se graf za vrijednosti
+        """
+  
+        df_1 = self.controller.df.copy()
+        df_1 = DataEdit_.select_col(df_1, start_bsl_morning)
+        
+        df_2 = self.controller.df.copy()
+        df_2 = DataEdit_.select_col(df_2, start_1st_expo)
+        
+        df_3 = self.controller.df.copy()
+        df_3 = DataEdit_.select_col(df_3, start_bsl_noon)
+        
+        df_4 = self.controller.df.copy()
+        df_4 = DataEdit_.select_col(df_4, start_2nd_expo)
+        
+        
+        #print(df_1)
+        #print('-----------------------------')
+        #print(df_1['mean'])
+        
         
         
     

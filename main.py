@@ -19,6 +19,7 @@
 
 from DataApp import DataApp_
 
+
 def main():
     print('yolo')
     app = DataApp_()
