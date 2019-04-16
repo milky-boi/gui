@@ -5,7 +5,7 @@ from tkinter import filedialog
 
 from DataPage import DataPage_
 from GraphPage import GraphPage_
-
+from DataEdit import DataEdit_
 LARGE_FONT = ('Verdana', 12)
 MID_FONT = ('Verdana', 10)
 SMALL_FONT = ('Verdana', 8)
@@ -36,3 +36,5 @@ class StartPage_(tk.Frame):
         #pd.set_option('display.max_rows', None, 'display.max_columns', None)
 
         self.controller.df = pd.read_csv(filepath, sep='\t', header=None)
+        DataEdit_.clear_data(self)
+        self.controller.df = DataEdit_.get_stats(self)

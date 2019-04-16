@@ -3,7 +3,7 @@ from tkinter import ttk
 
 from DataEdit import DataEdit_
 from GraphPage import GraphPage_
-
+import GraphPage
 LARGE_FONT = ('Verdana', 12)
 MID_FONT = ('Verdana', 10)
 SMALL_FONT = ('Verdana', 8)
@@ -29,14 +29,22 @@ class DataPage_(tk.Frame):
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
         tk.Label(self, text='Data page', font=MID_FONT).grid(pady=10,padx=10)
-        ttk.Button(self, text='Browse', 
-                   command=lambda: controller.show_frame(GraphPage_)).grid(row=1)
-        ttk.Button(self, text='Population').grid(row=1, column=4)
-        ttk.Button(self, text='Individual').grid(row=1, column=5)
         
-        #controller je tk koji je pozvao ovaj prozor, odnosno DataApp, postavljamo ga na self kako bi mogli gore u on_show_frame pristupiti df-u i učitati ga u tablicu
+        ttk.Button(self, text='Graph page', 
+                   command=lambda: controller.show_frame(GraphPage_)).grid(row=1)
+        
+        ttk.Button(self, text='Population',
+                   command=lambda: controller.show_frame(GraphPage_)).grid(row=1, column=4)
+        
+        ttk.Button(self, text='Individual',
+                   command=lambda: controller.show_frame(GraphPage_)).grid(row=1, column=5)
+        
+        
+        #controller je tk koji je pozvao ovaj prozor, odnosno DataApp, postavljamo 
+        #ga na self kako bi mogli gore u on_show_frame pristupiti df-u i učitati ga u tablicu
         self.controller = controller
-        #inicijaliziranje slušača za event koji pokreće funkciju učitavanja podataka iz pandasa u tablicu nakon što je otvoren ovaj prozor
+        #inicijaliziranje slušača za event koji pokreće funkciju učitavanja podataka 
+        #iz pandasa u tablicu nakon što je otvoren ovaj prozor
         self.bind("<<ShowFrame>>", self.on_show_frame)
         
         
@@ -80,13 +88,17 @@ class DataPage_(tk.Frame):
         self.start_bsl_noon = ttk.Entry(self, textvariable=start_bsl_noon).grid(row=13, column=1)     
         self.start_2nd_expo = ttk.Entry(self, textvariable=start_2nd_expo).grid(row=14, column=1)     
         
+        
+        
         ttk.Button(self, text='Split table',
-                   command=lambda: DataPage_.split_table(
+                   command=lambda: GraphPage_.split_for_graph(
                            self,
                            start_bsl_morning.get(),
                            start_1st_expo.get(),
                            start_bsl_noon.get(),
                            start_2nd_expo.get())).grid(row=15, column=1, padx=10, pady=10)
+        
+        
         
         ttk.Button(self, text='Save XLSX',
                    command=lambda: DataEdit_.save_to_xlsx(self.controller.df)).grid(row=20, column=4) 
