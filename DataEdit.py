@@ -1,19 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Apr  9 21:27:14 2019
-
-@author: mile
-"""
-import tkinter as tk
-from tkinter import ttk
-from tkinter import filedialog
-
 import pandas as pd 
-import numpy as np
-import DataPage
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
 
 class DataEdit_:
       
@@ -25,12 +10,8 @@ class DataEdit_:
         df_data da odabrane jedinke budu poredane od broja 1
         """
         start_col = int(start_col)
-        print(start_col)
         end_col = int(end_col)
-        print(type(start_col))
-        print(end_col)
-        print(type(end_col))
-        print(self.controller.df.columns)
+
         df_info = self.controller.df.iloc[:, :4]
         
         #ovdje cemo pozvati funkciju clear_data() koja ce dio tablice procistiti 
@@ -43,7 +24,7 @@ class DataEdit_:
         #print(df_info)
         #odabiremo jedinke koje smo unjeli u entryu
         df_data = df_data.loc[:, int(start_col):int(end_col)]
-        print(df_info.head())
+
         #postavljamo redne vrojeve od 1 na dalje
         header = []
         len_df = len(df_data.columns)+1
@@ -57,13 +38,12 @@ class DataEdit_:
         #ovdje vrsimo selekciju redaka
         start_row = int(start_row)-1
         end_row = int(end_row)
-
+        #df = df.reset_index(drop=True)
         self.controller.df = df[start_row:end_row]
+        self.controller.df = self.controller.df.reset_index(drop=True)
         #vrijednosti se brisu zbog druge selekcije nad podatcima
         start_row=None
         end_row=None
-        
-        print('columns selected')  
         
     def clear_data(self):
         """
@@ -107,8 +87,7 @@ class DataEdit_:
         
         df['mean'] = df.iloc[:,7:].mean(axis=1) 
         df['std'] = df.iloc[:,7:].std(axis=1) 
-        df['sum'] = df.iloc[:,7:].sum(axis=1) 
-        print('uspjesno df')    
+        df['sum'] = df.iloc[:,7:].sum(axis=1)     
         return df
     
     def save_to_xlsx(df):

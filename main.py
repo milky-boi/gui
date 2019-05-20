@@ -19,12 +19,12 @@
 
 from DataApp import DataApp_
 
-
 def main():
     print('yolo')
     app = DataApp_()
     app.mainloop()
     	
+    
 if __name__ == '__main__':
 	main()
 	

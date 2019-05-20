@@ -1,9 +1,11 @@
 import tkinter as tk
 from tkinter import ttk
 
+
 from DataEdit import DataEdit_
 from GraphPage import GraphPage_
-import GraphPage
+from IndividualReport import IndividualReport_
+#import GraphPage
 LARGE_FONT = ('Verdana', 12)
 MID_FONT = ('Verdana', 10)
 SMALL_FONT = ('Verdana', 8)
@@ -13,18 +15,18 @@ class DataPage_(tk.Frame):
     """
     #učitavanje pandas podataka u tablicu
     def on_show_frame(self, event):
-        T = tk.Text(self, height=20, width=140, wrap=None)
+        T = tk.Text(self, height=30, width=120, wrap=None)
         T.grid(row=2, column=4, columnspan=14, rowspan=14, padx=10, pady=10)
         T.insert(tk.END, self.controller.df)
     
     def filter_data(self,start_col,end_col,start_row,end_row):
         DataEdit_.select_cols_rows(self,start_col,end_col, start_row, end_row)
-        T = tk.Text(self, height=20, width=140, wrap=None)
+        T = tk.Text(self, height=30, width=120, wrap=None)
         T.grid(row=2, column=4, columnspan=14, rowspan=14, padx=10, pady=10)
         T.insert(tk.END, self.controller.df)
         
-    def split_table(self, start_bsl_morning, start_1st_expo, start_bsl_noon, start_2nd_expo):
-        DataEdit_.split_for_graph(self, start_bsl_morning, start_1st_expo, start_bsl_noon, start_2nd_expo)
+    #def split_table(self, start_bsl_morning, start_1st_expo, start_bsl_noon, start_2nd_expo):
+    #    DataEdit_.split_for_graph(self, start_bsl_morning, start_1st_expo, start_bsl_noon, start_2nd_expo)
         
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
@@ -36,8 +38,11 @@ class DataPage_(tk.Frame):
         ttk.Button(self, text='Population',
                    command=lambda: controller.show_frame(GraphPage_)).grid(row=1, column=4)
         
+        ttk.Button(self, text='Population 60',
+                   command=lambda: controller.show_frame(IndividualReport_)).grid(row=1, column=5)
+        
         ttk.Button(self, text='Individual',
-                   command=lambda: controller.show_frame(GraphPage_)).grid(row=1, column=5)
+                   command=lambda: controller.show_frame(IndividualReport_)).grid(row=1, column=6)               
         
         
         #controller je tk koji je pozvao ovaj prozor, odnosno DataApp, postavljamo 

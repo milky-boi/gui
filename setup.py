@@ -1,5 +1,5 @@
 from setuptools import setup
-import sys,os
+import os
 home=os.path.expanduser('~')
 
 with open('description.txt') as f:
@@ -7,7 +7,7 @@ with open('description.txt') as f:
 
 setup(
     name = 'flyGUI',
-    version = '0.1',
+    version = '0.2',
     description = 'GUI for data selection and visualization',
     long_description = long_description,
     url=' ',
