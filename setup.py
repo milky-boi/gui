@@ -7,7 +7,7 @@ with open('description.txt') as f:
 
 setup(
     name = 'flyGUI',
-    version = '0.2',
+    version = '0.3.1',
     description = 'GUI for data selection and visualization',
     long_description = long_description,
     url=' ',
@@ -15,9 +15,10 @@ setup(
     author = 'Milan Petrovic',
     author_email = '@gmail.com',
     install_requires=[
-	'matplotlib>=2.0',
-	'pandas>=0.18',
-	'tkinter>=2.4'
+    'python >= 3.7'
+	'matplotlib>=3.0.3',
+	'pandas>=0.24.2',
+	'tkinter>=8.6'
 	],
     classifiers = ['Operating System :: OS Independent',
             'Programming Language :: Python :: 3',

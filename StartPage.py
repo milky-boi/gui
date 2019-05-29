@@ -8,6 +8,7 @@ from GraphPage import GraphPage_
 from DataEdit import DataEdit_
 from IndividualReport import IndividualReport_
 from CompareExperiments import CompareExperiments_
+from Sleeping import Sleeping_
 
 LARGE_FONT = ('Verdana', 12)
 MID_FONT = ('Verdana', 10)
@@ -30,6 +31,8 @@ class StartPage_(tk.Frame):
                    command=lambda: controller.show_frame(IndividualReport_)).pack()
         ttk.Button(self, text='Compare experiments',
                    command=lambda: controller.show_frame(CompareExperiments_)).pack()
+        ttk.Button(self, text='Sleep analysis',
+                   command=lambda: controller.show_frame(Sleeping_)).pack()
 
     #ima više logike da je browse tu nego u DataApp
     def browse(self):

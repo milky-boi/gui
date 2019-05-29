@@ -111,8 +111,8 @@ class GraphPage_(tk.Frame):
         result['1stvs2nd'] = result['1stvs2nd'].where(result['1st adm'] <= result['2nd adm'], 'D' )
         result['1stvs2nd'] = result['1stvs2nd'].where(result['1st adm'] >= result['2nd adm'], 'I' )
         
-        result['BSLvs1stvs2nd'] = 'S'
-        #result['BSLvs1stvs2nd'] = result['BSLvs1stvs2nd'].where(result['BSLvs1st']=='I') and (result['1stvs2nd']=='I', 'B')
+        result['BSLvs1stvs2nd'] = 'B'
+        result['BSLvs1stvs2nd'] = result['BSLvs1stvs2nd'].where((result['BSLvs1st']=='I') & (result['1stvs2nd']=='I'), 'False')
         print (result['BSLvs1st'].shape)
         print (result['1stvs2nd'].shape)
         print(result.shape)

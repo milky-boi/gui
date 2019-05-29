@@ -8,7 +8,7 @@ Created on Wed May  1 04:05:50 2019
 import tkinter as tk
 from tkinter import ttk
 
-
+from DataEdit import DataEdit_
 import DataPage
 import DataEdit
 import GraphPage
@@ -30,9 +30,14 @@ class IndividualReport_(tk.Frame):
         self.controller = controller
         label= tk.Label(self, text='Individiual report page', font=MID_FONT)
         label.grid(pady=10,padx=10)     
-        ttk.Button(self, text='Data page',
-                   command=lambda: controller.show_frame(DataPage.DataPage_)).grid(column=1)
+        ttk.Button(self, text='Back to Data page ',
+                   command=lambda: controller.show_frame(DataPage.DataPage_)).grid(column=0)
         
         self.bind("<<ShowFrame>>", self.on_show_frame)
+
+        ttk.Button(self, text='Save XLSX',
+                   command=lambda: DataEdit_.save_result_to_xlsx(self.controller.result)).grid(row=23, column=0, padx=10, pady=10)
+        ttk.Button(self, text='Save TXT',
+                   command=lambda: DataEdit_.save_result_to_txt(self.controller.result)).grid(row=23, column=1, padx=10, pady=10)
 
 

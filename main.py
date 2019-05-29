@@ -18,9 +18,16 @@
 """
 
 from DataApp import DataApp_
-
+import tkinter
+import pandas
+import matplotlib
+import sys
 def main():
     print('yolo')
+    print(tkinter.TkVersion)
+    print(pandas.__version__)
+    print(matplotlib.__version__)
+    print(sys.version)
     app = DataApp_()
     app.mainloop()
     	

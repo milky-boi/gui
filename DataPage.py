@@ -5,6 +5,7 @@ from tkinter import ttk
 from DataEdit import DataEdit_
 from GraphPage import GraphPage_
 from IndividualReport import IndividualReport_
+from Sleeping import Sleeping_
 #import GraphPage
 LARGE_FONT = ('Verdana', 12)
 MID_FONT = ('Verdana', 10)
@@ -39,7 +40,7 @@ class DataPage_(tk.Frame):
                    command=lambda: controller.show_frame(GraphPage_)).grid(row=1, column=4)
         
         ttk.Button(self, text='Population 60',
-                   command=lambda: controller.show_frame(IndividualReport_)).grid(row=1, column=5)
+                   command=lambda: controller.show_frame(Sleeping_)).grid(row=1, column=5)
         
         ttk.Button(self, text='Individual',
                    command=lambda: controller.show_frame(IndividualReport_)).grid(row=1, column=6)               

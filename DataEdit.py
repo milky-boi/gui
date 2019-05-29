@@ -102,7 +102,20 @@ class DataEdit_:
         df.to_csv('selcted_data.txt', header=True, index=False, sep='\t', float_format='%.3f') 
         
         print('pohranjeno u txt')
-    
+
+    def save_result_to_xlsx(df):
+        """spremanje data framea u xlsx formatu"""
+
+        df.to_excel("individual_result_table.xlsx")
+        print('pohranjeno u xlsx')
+
+    def save_result_to_txt(df):
+        """spremanje data framea u txt formatu"""
+
+        df.to_csv('individual_result_table.txt', header=True, index=False, sep='\t', float_format='%.3f')
+
+        print('pohranjeno u txt')
+
 
         
         
