@@ -30,7 +30,7 @@ class DataApp_(tk.Tk):
         self.dfEdited = pd.DataFrame()
 
         self.frames = {}      
-        for F in (StartPage_, DataPage_, GraphPage_, IndividualReport_, CompareExperiments_, Sleeping_):
+        for F in (StartPage_, DataPage_, GraphPage_, IndividualReport_, CompareExperiments_):
             frame = F(container, self)        
             self.frames[F] = frame       
             frame.grid(row=0, column=0, sticky='nsew')       

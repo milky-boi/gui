@@ -10,7 +10,10 @@ from matplotlib.figure import Figure
 from matplotlib import style
 import matplotlib.dates as mdates
 
-import pandas as pd 
+import pandas as pd
+
+from datetime import datetime, timedelta
+
 import DataPage
 
 LARGE_FONT = ('Verdana', 12)
@@ -31,13 +34,7 @@ class GraphPage_(tk.Frame):
                    command=lambda: controller.show_frame(DataPage.DataPage_)).pack()
 
         self.bind("<<ShowGraph>>", self.plot_graph)
-        
-    def select_col(df, start):      
-        start_row  = int(start)
-        end_row = int(start)+30
-        df = df[start_row:end_row]
-        df = df.reset_index(drop=True)
-        return df
+
     
     def plot_graph(self, event):
         global df_1
@@ -56,7 +53,18 @@ class GraphPage_(tk.Frame):
         canvas = FigureCanvasTkAgg(f, self)
         canvas.draw()
         canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
-    
+
+    def select_col(df, start):
+        start_time = datetime.strptime(start, '%H:%M')
+        end_time = start_time + timedelta(minutes=30)
+
+        df['datetime'] = pd.to_datetime(df['datetime'])
+        df = df.loc[df['datetime'].dt.time.between(start_time.time(), end_time.time())]
+
+        df = df.reset_index(drop=True)
+
+        return df
+
     def split_for_graph(self, start_bsl_morning, start_1st_expo, start_bsl_noon, start_2nd_expo):
         """
         odabrane vrijednosti razdvajaju data frame na 4 manja framea 
@@ -65,6 +73,8 @@ class GraphPage_(tk.Frame):
         global df_2
         global df_3
         global df_4
+        print(start_1st_expo)
+        print(type(start_1st_expo))
         df = self.controller.df.copy()
         df_1 = GraphPage_.select_col(df, start_bsl_morning)
         df_2 = GraphPage_.select_col(df, start_1st_expo)

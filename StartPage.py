@@ -19,20 +19,21 @@ class StartPage_(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label= tk.Label(self, text='Start page', font=MID_FONT)
+        label= tk.Label(self, text='Start page', font=LARGE_FONT)
         label.pack(pady=10,padx=10)
+
+        label1= tk.Label(self, text="""bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+        bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla 
+        bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla """, font=MID_FONT)
+        label1.pack(pady=10,padx=10)
+
         ttk.Button(self, text='Browse files',
                    command=self.browse).pack()
         ttk.Button(self, text='Data page',
                    command=lambda: controller.show_frame(DataPage_)).pack()
-        ttk.Button(self, text='Population',
-                   command=lambda: controller.show_frame(GraphPage_)).pack()
-        ttk.Button(self, text='Individual',
-                   command=lambda: controller.show_frame(IndividualReport_)).pack()
         ttk.Button(self, text='Compare experiments',
                    command=lambda: controller.show_frame(CompareExperiments_)).pack()
-        ttk.Button(self, text='Sleep analysis',
-                   command=lambda: controller.show_frame(Sleeping_)).pack()
+
 
     #ima više logike da je browse tu nego u DataApp
     def browse(self):

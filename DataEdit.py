@@ -1,4 +1,5 @@
 import pandas as pd 
+from datetime import datetime, timedelta
 
 class DataEdit_:
       
@@ -36,10 +37,12 @@ class DataEdit_:
         df = pd.concat([df_info, df_data], axis=1, sort=False)
         
         #ovdje vrsimo selekciju redaka
-        start_row = int(start_row)-1
-        end_row = int(end_row)
-        #df = df.reset_index(drop=True)
-        self.controller.df = df[start_row:end_row]
+        start_time = datetime.strptime(start_row, '%Y-%m-%d %H:%M')
+        end_time = datetime.strptime(end_row, '%Y-%m-%d %H:%M')
+
+        df['datetime'] = pd.to_datetime(df['datetime'])
+
+        self.controller.df = df.loc[df['datetime'].dt.time.between(start_time.time(), end_time.time())]
         self.controller.df = self.controller.df.reset_index(drop=True)
         #vrijednosti se brisu zbog druge selekcije nad podatcima
         start_row=None

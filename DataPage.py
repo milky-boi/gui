@@ -1,11 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import filedialog
 
+import pandas as pd
 
 from DataEdit import DataEdit_
 from GraphPage import GraphPage_
 from IndividualReport import IndividualReport_
-from Sleeping import Sleeping_
+
 #import GraphPage
 LARGE_FONT = ('Verdana', 12)
 MID_FONT = ('Verdana', 10)
@@ -19,32 +21,44 @@ class DataPage_(tk.Frame):
         T = tk.Text(self, height=30, width=120, wrap=None)
         T.grid(row=2, column=4, columnspan=14, rowspan=14, padx=10, pady=10)
         T.insert(tk.END, self.controller.df)
+
     
     def filter_data(self,start_col,end_col,start_row,end_row):
         DataEdit_.select_cols_rows(self,start_col,end_col, start_row, end_row)
         T = tk.Text(self, height=30, width=120, wrap=None)
         T.grid(row=2, column=4, columnspan=14, rowspan=14, padx=10, pady=10)
         T.insert(tk.END, self.controller.df)
-        
+
+    def browse(self):
+        filepath = filedialog.askopenfilename(
+            initialdir = r"C:\\Users\\Desktop\\gui-master",
+            title = "Select file",
+            filetypes = (('txt','*.txt'),
+            ("all files","*.*")))
+        #controller je tk koji je pozvao ovaj prozor, odnosno DataApp, znači ovo sprema pandas dataframe u globalnu varijablu u DataApp
+        pd.set_option('display.max_rows', None)
+        pd.set_option('display.max_rows', None, 'display.max_columns', None)
+
+        self.controller.df = pd.read_csv(filepath, sep='\t', header=None)
+        DataEdit_.clear_data(self)
+        self.controller.df = DataEdit_.get_stats(self)
+        self.on_show_frame(self)
+
     #def split_table(self, start_bsl_morning, start_1st_expo, start_bsl_noon, start_2nd_expo):
     #    DataEdit_.split_for_graph(self, start_bsl_morning, start_1st_expo, start_bsl_noon, start_2nd_expo)
         
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
-        tk.Label(self, text='Data page', font=MID_FONT).grid(pady=10,padx=10)
+        tk.Label(self, text='Data edit').grid(pady=10,padx=10)
         
-        ttk.Button(self, text='Graph page', 
-                   command=lambda: controller.show_frame(GraphPage_)).grid(row=1)
+        ttk.Button(self, text='Browse files',
+                   command=self.browse).grid(row=1)
         
         ttk.Button(self, text='Population',
                    command=lambda: controller.show_frame(GraphPage_)).grid(row=1, column=4)
         
-        ttk.Button(self, text='Population 60',
-                   command=lambda: controller.show_frame(Sleeping_)).grid(row=1, column=5)
-        
         ttk.Button(self, text='Individual',
-                   command=lambda: controller.show_frame(IndividualReport_)).grid(row=1, column=6)               
-        
+                   command=lambda: controller.show_frame(IndividualReport_)).grid(row=1, column=6)
         
         #controller je tk koji je pozvao ovaj prozor, odnosno DataApp, postavljamo 
         #ga na self kako bi mogli gore u on_show_frame pristupiti df-u i učitati ga u tablicu
@@ -52,8 +66,7 @@ class DataPage_(tk.Frame):
         #inicijaliziranje slušača za event koji pokreće funkciju učitavanja podataka 
         #iz pandasa u tablicu nakon što je otvoren ovaj prozor
         self.bind("<<ShowFrame>>", self.on_show_frame)
-        
-        
+
         #########ROWS AND COLUMNS SELECTION COL0####################################
         ttk.Label(self, text='Select flies:', font=MID_FONT).grid(row=2, column=1)           
         ttk.Label(self, text="Start column:" , font=SMALL_FONT).grid(row=3)
@@ -84,10 +97,10 @@ class DataPage_(tk.Frame):
         ttk.Label(self, text="BSL noon:", font=SMALL_FONT).grid(row=13)       
         ttk.Label(self, text="2nd expo:", font=SMALL_FONT).grid(row=14)       
               
-        start_bsl_morning = tk.IntVar()
-        start_1st_expo = tk.IntVar()   
-        start_bsl_noon = tk.IntVar()
-        start_2nd_expo = tk.IntVar()
+        start_bsl_morning = tk.StringVar()
+        start_1st_expo = tk.StringVar()
+        start_bsl_noon = tk.StringVar()
+        start_2nd_expo = tk.StringVar()
         
         self.start_bsl_morning = ttk.Entry(self, textvariable=start_bsl_morning).grid(row=11, column=1)     
         self.start_1st_expo = ttk.Entry(self, textvariable=start_1st_expo).grid(row=12, column=1)     
