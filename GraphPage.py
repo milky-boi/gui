@@ -73,8 +73,8 @@ class GraphPage_(tk.Frame):
         global df_2
         global df_3
         global df_4
-        print(start_1st_expo)
-        print(type(start_1st_expo))
+        #print(start_1st_expo)
+        #print(type(start_1st_expo))
         df = self.controller.df.copy()
         df_1 = GraphPage_.select_col(df, start_bsl_morning)
         df_2 = GraphPage_.select_col(df, start_1st_expo)
@@ -123,12 +123,12 @@ class GraphPage_(tk.Frame):
         
         result['BSLvs1stvs2nd'] = 'B'
         result['BSLvs1stvs2nd'] = result['BSLvs1stvs2nd'].where((result['BSLvs1st']=='I') & (result['1stvs2nd']=='I'), 'False')
-        print (result['BSLvs1st'].shape)
-        print (result['1stvs2nd'].shape)
-        print(result.shape)
+        #print (result['BSLvs1st'].shape)
+        #print (result['1stvs2nd'].shape)
+        #print(result.shape)
         self.controller.result = result
         
-        print(result.head(5))
+        #print(result.head(5))
 
 
 

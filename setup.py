@@ -1,11 +1,17 @@
 from setuptools import setup
 import os
+
+import py2exe
+setup(console=['main.py'])
+
 home=os.path.expanduser('~')
 
 with open('description.txt') as f:
     long_description = f.read()
 
 setup(
+    1
+
     name = 'flyGUI',
     version = '0.3.1',
     description = 'GUI for data selection and visualization',
@@ -18,7 +24,7 @@ setup(
     'python >= 3.7'
 	'matplotlib>=3.0.3',
 	'pandas>=0.24.2',
-	'tkinter>=8.6'
+	'tkinter>=8'
 	],
     classifiers = ['Operating System :: OS Independent',
             'Programming Language :: Python :: 3',

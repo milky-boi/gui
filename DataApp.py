@@ -18,7 +18,7 @@ class DataApp_(tk.Tk):
     
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)     
-        tk.Tk.wm_title(self, "DF select")
+        tk.Tk.wm_title(self, "flyGUI v0.2.0")
         
         container = tk.Frame(self)        
         container.pack(side='top', fill='both', expand=True)        

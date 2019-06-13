@@ -23,7 +23,6 @@ import pandas
 import matplotlib
 import sys
 def main():
-    print('yolo')
     print(tkinter.TkVersion)
     print(pandas.__version__)
     print(matplotlib.__version__)

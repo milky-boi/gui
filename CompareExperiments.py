@@ -97,11 +97,11 @@ class CompareExperiments_(tk.Frame):
                    command=lambda: controller.show_frame(DataPage.DataPage_)).grid(column=1)
 
         ttk.Button(self, text='Browse experiment 1',
-                   command=self.browse_exp_1).grid(row=1)
+                   command=self.browse_exp_1).grid(row=1, padx=10, pady=10)
         ttk.Button(self, text='Browse experiment 2',
-                   command=self.browse_exp_2).grid(row=2)
+                   command=self.browse_exp_2).grid(row=2, padx=10, pady=10)
         ttk.Button(self, text='Browse experiment 3',
-                   command=self.browse_exp_3).grid(row=3)
+                   command=self.browse_exp_3).grid(row=3, padx=10, pady=10)
         ttk.Button(self, text='Split table',
                    command=lambda: CompareExperiments_.compare_experiments(
                        self,

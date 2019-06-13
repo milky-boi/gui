@@ -40,9 +40,7 @@ class IndividualReport_(tk.Frame):
         ttk.Button(self, text='Save TXT',
                    command=lambda: DataEdit_.save_result_to_txt(self.controller.result)).grid(row=23, column=1, padx=10, pady=10)
 
-        label1= tk.Label(self, text="""bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-        bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla 
-        bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla """, font=MID_FONT)
+        label1= tk.Label(self, text="""Pojedinacne tablice pohranjuju se u xlsx formatu""", font=MID_FONT)
         label1.grid(pady=10,padx=10)
 
 

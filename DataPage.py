@@ -7,6 +7,7 @@ import pandas as pd
 from DataEdit import DataEdit_
 from GraphPage import GraphPage_
 from IndividualReport import IndividualReport_
+from CompareExperiments import CompareExperiments_
 
 #import GraphPage
 LARGE_FONT = ('Verdana', 12)
@@ -18,16 +19,16 @@ class DataPage_(tk.Frame):
     """
     #učitavanje pandas podataka u tablicu
     def on_show_frame(self, event):
-        T = tk.Text(self, height=30, width=120, wrap=None)
+        T = tk.Text(self, height=30, width=200, wrap=None)
         T.grid(row=2, column=4, columnspan=14, rowspan=14, padx=10, pady=10)
-        T.insert(tk.END, self.controller.df)
+        T.insert(tk.END, self.controller.df.to_string())
 
     
     def filter_data(self,start_col,end_col,start_row,end_row):
         DataEdit_.select_cols_rows(self,start_col,end_col, start_row, end_row)
         T = tk.Text(self, height=30, width=120, wrap=None)
         T.grid(row=2, column=4, columnspan=14, rowspan=14, padx=10, pady=10)
-        T.insert(tk.END, self.controller.df)
+        T.insert(tk.END, self.controller.df.to_string())
 
     def browse(self):
         filepath = filedialog.askopenfilename(
@@ -58,8 +59,11 @@ class DataPage_(tk.Frame):
                    command=lambda: controller.show_frame(GraphPage_)).grid(row=1, column=4)
         
         ttk.Button(self, text='Individual',
-                   command=lambda: controller.show_frame(IndividualReport_)).grid(row=1, column=6)
-        
+                   command=lambda: controller.show_frame(IndividualReport_)).grid(row=1, column=5)
+
+        ttk.Button(self, text='Compare exp',
+                   command=lambda: controller.show_frame(CompareExperiments_)).grid(row=1, column=7)
+
         #controller je tk koji je pozvao ovaj prozor, odnosno DataApp, postavljamo 
         #ga na self kako bi mogli gore u on_show_frame pristupiti df-u i učitati ga u tablicu
         self.controller = controller

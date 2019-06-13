@@ -22,9 +22,7 @@ class StartPage_(tk.Frame):
         label= tk.Label(self, text='Start page', font=LARGE_FONT)
         label.pack(pady=10,padx=10)
 
-        label1= tk.Label(self, text="""bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-        bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla 
-        bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla """, font=MID_FONT)
+        label1= tk.Label(self, text="""Dobrodosli u FlyGUI aplikaciju""", font=MID_FONT)
         label1.pack(pady=10,padx=10)
 
         ttk.Button(self, text='Browse files',
