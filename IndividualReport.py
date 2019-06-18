@@ -10,8 +10,7 @@ from tkinter import ttk
 
 from DataEdit import DataEdit_
 import DataPage
-import DataEdit
-import GraphPage
+
 
 LARGE_FONT = ('Verdana', 12)
 MID_FONT = ('Verdana', 10)
@@ -21,8 +20,6 @@ class IndividualReport_(tk.Frame):
     def on_show_frame(self, event):
         T = tk.Text(self, height=35, width=80, wrap=None)
         T.grid(row=2, columnspan=2, rowspan=20, padx=10, pady=10)
-        
-
         T.insert(tk.END, self.controller.result)
         
     def __init__(self, parent, controller):

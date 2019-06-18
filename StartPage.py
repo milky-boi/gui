@@ -8,7 +8,7 @@ from GraphPage import GraphPage_
 from DataEdit import DataEdit_
 from IndividualReport import IndividualReport_
 from CompareExperiments import CompareExperiments_
-from Sleeping import Sleeping_
+#from Sleeping import Sleeping_
 
 LARGE_FONT = ('Verdana', 12)
 MID_FONT = ('Verdana', 10)

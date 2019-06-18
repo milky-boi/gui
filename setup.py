@@ -23,7 +23,7 @@ setup(
     install_requires=[
     'python >= 3.7'
 	'matplotlib>=3.0.3',
-	'pandas>=0.24.2',
+	'pandas<=0.23.4',
 	'tkinter>=8'
 	],
     classifiers = ['Operating System :: OS Independent',

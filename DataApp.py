@@ -6,7 +6,7 @@ from DataPage import DataPage_
 from GraphPage import GraphPage_
 from IndividualReport import IndividualReport_
 from CompareExperiments import CompareExperiments_
-from Sleeping import Sleeping_
+from HourAve import HourAve_
 
 LARGE_FONT = ('Verdana', 12)
 MID_FONT = ('Verdana', 10)
@@ -30,7 +30,7 @@ class DataApp_(tk.Tk):
         self.dfEdited = pd.DataFrame()
 
         self.frames = {}      
-        for F in (StartPage_, DataPage_, GraphPage_, IndividualReport_, CompareExperiments_):
+        for F in (StartPage_, DataPage_, GraphPage_, IndividualReport_, CompareExperiments_, HourAve_):
             frame = F(container, self)        
             self.frames[F] = frame       
             frame.grid(row=0, column=0, sticky='nsew')       
@@ -43,5 +43,8 @@ class DataApp_(tk.Tk):
         frame.event_generate("<<ShowFrame>>")
         if(type(frame).__name__ == 'GraphPage_'):
             frame.event_generate("<<ShowGraph>>")
-    
+
+
+
+
         
