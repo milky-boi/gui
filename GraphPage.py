@@ -38,6 +38,11 @@ class GraphPage_(tk.Frame):
         df_3 = self.controller.df_3
         df_4 = self.controller.df_4
 
+        try:
+            self.canvas.get_tk_widget().pack_forget()
+        except AttributeError:
+            pass
+
         f = Figure(figsize=(5, 5), dpi=100)
         a = f.add_subplot(111)
         a.plot(df_1['mean'])
@@ -46,9 +51,11 @@ class GraphPage_(tk.Frame):
         a.plot(df_4['mean'])
         a.legend(['bsl morning', '1st expo', 'bsl noon', '2nd expo'])
 
-        canvas = FigureCanvasTkAgg(f, self)
-        canvas.draw()
-        canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        self.canvas = FigureCanvasTkAgg(f, self)
+
+        self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        self.canvas.draw()
+
 
 
 

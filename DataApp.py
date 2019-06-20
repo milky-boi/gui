@@ -44,6 +44,9 @@ class DataApp_(tk.Tk):
         if(type(frame).__name__ == 'GraphPage_'):
             frame.event_generate("<<ShowGraph>>")
 
+        if(type(frame).__name__ == 'HourAve_'):
+            frame.event_generate("<<ShowHourGraph>>")
+
 
 
 

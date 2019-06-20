@@ -26,21 +26,27 @@ class HourAve_(tk.Frame):
         ttk.Button(self, text='Data page',
                    command=lambda: controller.show_frame(DataPage.DataPage_)).pack()
 
-        self.bind("<<ShowGraph>>", self.plot_ave_hour_graph)
+        self.bind("<<ShowHourGraph>>", self.plot_ave_hour_graph)
 
     def plot_ave_hour_graph(self, event):
-        df_1 = self.controller.df_1
+        try:
+            self.canvas.get_tk_widget().pack_forget()
+        except AttributeError:
+            pass
+
+        df = self.controller.df_hour_ave
 
 
         f = Figure(figsize=(5, 5), dpi=100)
         a = f.add_subplot(111)
 
-        a.plot(df_1['mean'])
+        a.plot(df['mean'])
 
-        a.legend(['bsl morning'])
-        canvas = FigureCanvasTkAgg(f, self)
-        canvas.draw()
-        canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        a.legend(['hour average'])
+        self.canvas = FigureCanvasTkAgg(f, self)
+        self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        self.canvas.draw()
+
 
     
 
