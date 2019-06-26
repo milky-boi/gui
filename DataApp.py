@@ -6,7 +6,7 @@ from DataPage import DataPage_
 from GraphPage import GraphPage_
 from IndividualReport import IndividualReport_
 from CompareExperiments import CompareExperiments_
-from HourAve import HourAve_
+from Sleeping import Sleeping_
 
 LARGE_FONT = ('Verdana', 12)
 MID_FONT = ('Verdana', 10)
@@ -18,7 +18,7 @@ class DataApp_(tk.Tk):
     
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)     
-        tk.Tk.wm_title(self, "flyGUI v0.2.0")
+        tk.Tk.wm_title(self, "DF select")
         
         container = tk.Frame(self)        
         container.pack(side='top', fill='both', expand=True)        
@@ -30,7 +30,7 @@ class DataApp_(tk.Tk):
         self.dfEdited = pd.DataFrame()
 
         self.frames = {}      
-        for F in (StartPage_, DataPage_, GraphPage_, IndividualReport_, CompareExperiments_, HourAve_):
+        for F in (StartPage_, DataPage_, GraphPage_, IndividualReport_, CompareExperiments_):
             frame = F(container, self)        
             self.frames[F] = frame       
             frame.grid(row=0, column=0, sticky='nsew')       
@@ -43,11 +43,5 @@ class DataApp_(tk.Tk):
         frame.event_generate("<<ShowFrame>>")
         if(type(frame).__name__ == 'GraphPage_'):
             frame.event_generate("<<ShowGraph>>")
-
-        if(type(frame).__name__ == 'HourAve_'):
-            frame.event_generate("<<ShowHourGraph>>")
-
-
-
-
+    
         

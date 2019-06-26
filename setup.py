@@ -1,8 +1,6 @@
 from setuptools import setup
 import os
-
 import py2exe
-setup(console=['main.py'])
 
 home=os.path.expanduser('~')
 
@@ -10,10 +8,9 @@ with open('description.txt') as f:
     long_description = f.read()
 
 setup(
-    1
-
+    console=['main.py'],
     name = 'flyGUI',
-    version = '0.3.1',
+    version = '0.2',
     description = 'GUI for data selection and visualization',
     long_description = long_description,
     url=' ',
@@ -21,10 +18,8 @@ setup(
     author = 'Milan Petrovic',
     author_email = '@gmail.com',
     install_requires=[
-    'python >= 3.7'
-	'matplotlib>=3.0.3',
-	'pandas<=0.23.4',
-	'tkinter>=8'
+    'matplotlib>=3.0.3',
+	'pandas>=0.24.2'
 	],
     classifiers = ['Operating System :: OS Independent',
             'Programming Language :: Python :: 3',
