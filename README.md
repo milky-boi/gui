@@ -1,14 +1,14 @@
 # gui
 #Introduction
 
-#Features
+##Features
 
-#Data representation
+##Data representation
 
-#Installation
+##Installation
 
 ##Required packages
 
-#Usage
+##Usage
 
-#Citations
+##Citations
