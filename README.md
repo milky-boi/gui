@@ -1,4 +1,4 @@
-# flyGUI: editing and visualizing DAM1 data
+# flyGUI: DAM1 data edit tool
 Latest release
 License
 ## Introduction
