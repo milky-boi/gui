@@ -12,6 +12,12 @@ nata. Nad odabranim podatcima provode se statisticki izracuni (prosjek, standa
 devijacija) i vizualizacija. Rezultati obrade korisniku se prikazuju u sucelju te mu
 se nudi izbor prikaza podataka ovisno o korisnikovim potrebama.
 
+## How to use
+```
+git status
+git add
+git commit
+```
 ## Main Features
  - Vizualizacija i obrada podataka individualne i populacijske aktivnosti po intervalima 
 
@@ -20,17 +26,16 @@ se nudi izbor prikaza podataka ovisno o korisnikovim potrebama.
  -  Usporedba rezultata individualne analize
 
 ## Data representation
+ - Vizualizacija i obrada podataka individualne i populacijske aktivnosti po intervalima 
 
+ - Vizualizacija i obrada prosjecne aktivnosti populacije po satu 
+
+ -  Usporedba rezultata individualne analize
 ## Required packages
 ```
 git status
 git add
 git commit
 ```
-## How to use
-```
-git status
-git add
-git commit
-```
+
 ## Citations
