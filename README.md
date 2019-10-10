@@ -16,7 +16,7 @@ pip install pandas
 pip install tkinter
 pip install PyQt5
 ```
-## Program usage
+## How to start
 First you need launch the Command Prompt. A fast way to launch this window is to press the *Win + R* keys on your keyboard. Then, type *cmd* and press Enter or click/tap OK.
 find the folder where the program files are located. Use command *cd*:
 ```
