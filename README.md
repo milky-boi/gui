@@ -17,12 +17,12 @@ pip install tkinter
 pip install PyQt5
 ```
 ## Program usage
-First you need launch the Command Prompt. A fast way to launch this window is to press the Win + R keys on your keyboard. Then, type 'cmd' and press Enter or click/tap OK.
-find the folder where the program files are located. Use command 'cd':
+First you need launch the Command Prompt. A fast way to launch this window is to press the *Win + R* keys on your keyboard. Then, type *cmd* and press Enter or click/tap OK.
+find the folder where the program files are located. Use command *cd*:
 ```
 C:\Users\user>cd Desktop\GUI
 ```
-Run 'main.py to start program.
+Run *main.py* to start program.
 ```
 C:\Users\user>main.py
 ```
