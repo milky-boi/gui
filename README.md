@@ -9,12 +9,24 @@ such, transforming and storing them into new formats. The app offers visualizati
 Experiment more on data within different time intervals and comparison of results. Expression statistics (average, normal) are collected over the selected data
 deviation) and visualization. The processing results are displayed to the user throughout and to the user
 offers the choice of displaying data according to the user's needs.
-## How to use
+## Installation required packages on Windows
 ```
-git status
-git add
-git commit
+	pip install matplotlib
+	pip install pandas
+	pip install tkinter
+  pip install PyQt5
 ```
+## Program usage
+First you need launch the Command Prompt. A fast way to launch this window is to press the Win + R keys on your keyboard. Then, type 'cmd' and press Enter or click/tap OK.
+find the folder where the program files are located. Use command 'cd':
+```
+C:\Users\user>cd Desktop\GUI
+```
+Run 'main.py to start program.
+```
+C:\Users\user>main.py
+```
+
 ## Main Features
 - Visualization and processing of individual and population activity data at intervals
 
@@ -27,11 +39,5 @@ git commit
 - Visualization and processing of average population activity per hour
 
 - Comparison of individual analysis results
-## Required packages
-```
-git status
-git add
-git commit
-```
 
 ## Citations
