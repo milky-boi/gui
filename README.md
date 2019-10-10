@@ -11,10 +11,10 @@ deviation) and visualization. The processing results are displayed to the user t
 offers the choice of displaying data according to the user's needs.
 ## Installation required packages on Windows
 ```
-	pip install matplotlib
-	pip install pandas
-	pip install tkinter
-  pip install PyQt5
+pip install matplotlib
+pip install pandas
+pip install tkinter
+pip install PyQt5
 ```
 ## Program usage
 First you need launch the Command Prompt. A fast way to launch this window is to press the Win + R keys on your keyboard. Then, type 'cmd' and press Enter or click/tap OK.
