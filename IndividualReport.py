@@ -10,8 +10,7 @@ from tkinter import ttk
 
 from DataEdit import DataEdit_
 import DataPage
-import DataEdit
-import GraphPage
+
 
 LARGE_FONT = ('Verdana', 12)
 MID_FONT = ('Verdana', 10)
@@ -21,8 +20,6 @@ class IndividualReport_(tk.Frame):
     def on_show_frame(self, event):
         T = tk.Text(self, height=35, width=80, wrap=None)
         T.grid(row=2, columnspan=2, rowspan=20, padx=10, pady=10)
-        
-
         T.insert(tk.END, self.controller.result)
         
     def __init__(self, parent, controller):
@@ -40,8 +37,8 @@ class IndividualReport_(tk.Frame):
         ttk.Button(self, text='Save TXT',
                    command=lambda: DataEdit_.save_result_to_txt(self.controller.result)).grid(row=23, column=1, padx=10, pady=10)
 
-        label1= tk.Label(self, text="""Pojedinacne tablice pohranjuju se u xlsx formatu""", font=MID_FONT)
-        label1.grid(pady=10,padx=10)
+        #label1= tk.Label(self, text="""Pojedinacne tablice pohranjuju se u xlsx formatu""", font=MID_FONT)
+        #label1.grid(pady=10,padx=10)
 
 
 
